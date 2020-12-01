@@ -1,5 +1,6 @@
 # Auto-Review-Generator自动综述生成器
 Read and translate English literature to generate review automatically
+
 github上图片可能无法查看，完整教程见[博客](https://www.jianshu.com/p/3639aac9d520)
 
 如果不想了解技术细节，只想直接拿来用，可以直接跳过代码编写部分，直达最后代码使用部分。
