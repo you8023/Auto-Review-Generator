@@ -1,4 +1,4 @@
-# Auto-Review-Generator
+# Auto-Review-Generator自动综述生成器
 Read and translate English literature to generate review automatically
 github上图片可能无法查看，完整教程见[博客](https://www.jianshu.com/p/3639aac9d520)
 
