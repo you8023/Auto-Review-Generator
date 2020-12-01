@@ -5,7 +5,7 @@ github上图片可能无法查看，完整教程见[博客](https://www.jianshu.
 
 如果不想了解技术细节，只想直接拿来用，可以直接跳过代码编写部分，直达最后代码使用部分。
 
-**本代码免费[开源](https://github.com/you8023/Auto-Review-Generator)，如果你觉得好用，希望能够给我一个赞（能打赏更好），也欢迎去[github](https://github.com/you8023/Auto-Review-Generator/issues)发表意见建议。**
+**本代码免费[开源](https://github.com/you8023/Auto-Review-Generator)，如果你觉得好用，希望能够给我一个Star，也欢迎去[github](https://github.com/you8023/Auto-Review-Generator/issues)发表意见建议。**
 
 代码实现效果如下：
 ![实现效果](https://upload-images.jianshu.io/upload_images/5714082-308ebb2f869973a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -22,7 +22,7 @@ github上图片可能无法查看，完整教程见[博客](https://www.jianshu.
 本代码使用了有道翻译的API，因此，如需使用，需要去有道翻译接口官方申请APP Key和Secret key，直接按照其[官方教程](https://ai.youdao.com/doc.s#guide)申请即可，后续需要在代码中配置。接口申请完全免费，初始会送100元的面值，用完需要续费，不过一般情况100元可以用很久了。
 ### 安装pdfminer
 因为我使用的是python3，因此输入以下命令安装：
-```
+```shell
 pip install pdfminer4k
 ```
 ### 需求分析
@@ -38,7 +38,7 @@ pip install pdfminer4k
 ## 代码编写
 ### 读取pdf文件
 依次读取文件夹内的文件，如果后缀为pdf，则写入文件元祖：
-```
+```python
 def getFileName(filepath):
     file_list = []
     for root,dirs,files in os.walk(filepath):
@@ -179,7 +179,7 @@ def generate_author(author):
 ```
 ### 翻译接口
 其实直接抄有道官网文档就可以了，这里在其基础上做了更改：
-```
+```python
 class YouDaoFanyi:
     def __init__(self, appKey, appSecret):
         self.YOUDAO_URL = 'https://openapi.youdao.com/api/'
@@ -229,7 +229,7 @@ class YouDaoFanyi:
         return result
 ```
 最后，书写主函数进行调用：
-```
+```python
 if __name__ == '__main__':
     #解析本地PDF文本，保存到本地TXT
     folder = '文件夹路径' # 需要读取pdf的文件夹的路径，注意为绝对路径，如：E:/论文/
@@ -271,7 +271,7 @@ if __name__ == '__main__':
 代码可在[Github](https://github.com/you8023/Auto-Review-Generator)上下载
 ### 配置代码
 更改代码主函数的配置变量（其中的应用ID和应用秘钥需要事先申请，见上文事前准备一节）：
-```
+```python
 if __name__ == '__main__':
     #解析本地PDF文本，保存到本地TXT
     folder = '文件夹路径' # 需要读取pdf的文件夹的路径，注意为绝对路径，如：E:/论文/
@@ -286,7 +286,12 @@ python pdfprocessor.py
 ```
 ## 运行结果
 仅花了38秒的时间，就提取并翻译完成了14个pdf文件，翻译生成的字数合计6812个字：
+
 ![运行结果](https://upload-images.jianshu.io/upload_images/5714082-6ebae187fdf9ac04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 试了一下45个文件，花了大概两分钟，生成了一万多字
+
 最后看一下翻译结果对比：
+
 ![翻译结果中英对比](https://upload-images.jianshu.io/upload_images/5714082-308ebb2f869973a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
