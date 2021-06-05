@@ -204,8 +204,8 @@ def getFileName(filepath):
 
 if __name__ == '__main__':
     #解析本地PDF文本，保存到本地TXT
-    folder = '文件夹路径' # 需要读取pdf的文件夹的路径，注意为绝对路径，如：E:/论文/
-    write_txt_file = 'result.txt' # 保存结果的文件
+    folder = '文件夹路径' # 需要读取pdf的文件夹的路径，注意为绝对路径，如：E:/论文
+    write_txt_file = 'result.txt' # 保存结果的文件，为txt文件
     appKey = '应用ID'  # 应用id
     appSecret = '应用秘钥'  # 应用密钥
     success_count = 0 # 统计成功的次数
