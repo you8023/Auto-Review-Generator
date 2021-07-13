@@ -23,7 +23,7 @@ github上图片可能无法查看，完整教程见[博客](https://www.jianshu.
 ### 安装pdfminer
 因为我使用的是python3，因此输入以下命令安装：
 ```shell
-pip install pdfminer4k
+pip install pdfminer3k
 ```
 ### 需求分析
 这里分析了本代码实现的关键点：
