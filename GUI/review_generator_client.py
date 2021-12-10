@@ -155,6 +155,8 @@ class ReviewGenerate:
                                     author = self.generate_author(author)
                                     QTextBrowser.append('author '+ author)
                                     QTextBrowser.moveCursor(QTextBrowser.textCursor().End)  #文本框显示到底部
+                                    QtWidgets.QApplication.processEvents()
+                                    QtWidgets.QApplication.processEvents()
                                 # 去掉pdf文件读取的各种换行符
                                 result = result.replace('\n', '')
                                 try:
@@ -202,11 +204,13 @@ class ReviewGenerate:
                                 except Exception as e:
                                     QTextBrowser.append(str(e))
                                     QTextBrowser.moveCursor(QTextBrowser.textCursor().End)  #文本框显示到底部
+                                    QtWidgets.QApplication.processEvents()
                                 last_para = result
                                 count += 1
                     except Exception as e:
                         QTextBrowser.append(str(e))
                         QTextBrowser.moveCursor(QTextBrowser.textCursor().End)  #文本框显示到底部
+                        QtWidgets.QApplication.processEvents()
                 else:
                     continue
             with open('%s' % (save_path), 'a', encoding='utf-8') as f:
@@ -259,15 +263,18 @@ class mywindow(QtWidgets.QWidget, Ui_ReviewGenerator):
         if not (folder and save_folder and write_txt_file and appKey and appSecret):
             self.textBrowser.append("请检查上面的参数是否填写完整！")
             self.textBrowser.moveCursor(self.textBrowser.textCursor().End)  #文本框显示到底部
+            QtWidgets.QApplication.processEvents()
             return
         else:
             self.textBrowser.append("程序已开始运行，请稍等...")
             self.textBrowser.moveCursor(self.textBrowser.textCursor().End)  #文本框显示到底部
+            QtWidgets.QApplication.processEvents()
 
         review_generator = ReviewGenerate(folder, save_folder, write_txt_file, appKey, appSecret)
         pdf_list = review_generator.getFileName(folder)
         self.textBrowser.append("已读取到" + str(len(pdf_list)) + "个PDF，正在处理...")
         self.textBrowser.moveCursor(self.textBrowser.textCursor().End)  #文本框显示到底部
+        QtWidgets.QApplication.processEvents()
 
         # 依次读取元祖，获取pdf文件位置
         for file_item in pdf_list:
@@ -275,6 +282,7 @@ class mywindow(QtWidgets.QWidget, Ui_ReviewGenerator):
                 try:
                     self.textBrowser.append(file_item)
                     self.textBrowser.moveCursor(self.textBrowser.textCursor().End)  #文本框显示到底部
+                    QtWidgets.QApplication.processEvents()
                     QTextBrowser = self.textBrowser
                     review_generator.parse(QTextBrowser, pdf_html, folder.rstrip('/') + '/' + write_txt_file.rstrip('.txt') + '.txt', appKey, appSecret)
                     review_generator.success_count+=1
@@ -282,6 +290,7 @@ class mywindow(QtWidgets.QWidget, Ui_ReviewGenerator):
                     # 文件读取或翻译失败则将错误信息写入TXT
                     self.textBrowser.append('文档读取失败：' + str(e) +'，路径为：' + file_item)
                     self.textBrowser.moveCursor(self.textBrowser.textCursor().End)  #文本框显示到底部
+                    QtWidgets.QApplication.processEvents()
                     with open('%s' % (folder + write_txt_file), 'a', encoding='utf-8') as f:
                         f.write('\n'+'文档读取失败：' + str(e) +'，路径为：' + file_item + '\n')
                     review_generator.fail_count+=1
